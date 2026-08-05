@@ -1,2 +1,2 @@
 # DW2
-Conteúdo das aulas de Desenvolvimento Web 2
+Material das aulas de Desenvolvimento web 2 da Fatec Registro
