@@ -1,0 +1,17 @@
+//Função anônima
+const mult = function(x){
+    return x*2;
+}
+
+const x = 15;
+document.write(`<p>O resultado da multiplicação é ${mult(x)}</p>`);
+
+// Função Seta - Arrow function;
+
+const triplo = (y) =>{
+    return y*3;
+
+const y = 100;
+document.write(`<p>O triplo de ${y} é ${triplo(y)}</p>`);
+
+}
