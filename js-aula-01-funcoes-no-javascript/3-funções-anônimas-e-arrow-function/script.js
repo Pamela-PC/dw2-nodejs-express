@@ -45,4 +45,4 @@ const loadUser = (function (user) {
             Hobby: Artesanato <br>
             `)
     }, 3000);
-})("Allison"); //Passando o parâmetro
+})("Pamela"); //Passando o parâmetro
