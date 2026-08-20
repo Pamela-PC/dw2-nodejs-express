@@ -43,11 +43,10 @@ const listaProdutos = [
 document.write(`<h4>Produtos em promoção: <h4/>`);
 
 listaProdutos.forEach(produto =>{
-    document.write(`
+    document.write(`<p>
         produto: ${produto.nome}<br>
         marca: ${produto.marca}<br>
         Preço: ${produto.preco}<br>
         Descrição: ${produto.descricao}<br><br>
-        `
-    );
+        </p>`);
 });
