@@ -46,3 +46,4 @@ document.write(`<p>Os números ordenados são: ${numeros.sort()}</p>`);
 document.write(`<p>Os números ordenados de forma crescente ;são: ${numeros.sort((a,b)=> a-b)}</p>`);
 //ORDEM DECRESCENTE
 document.write(`<p>Os números ordenados de forma decrescente ;são: ${numeros.sort((a,b)=> b-a)}</p>`);
+
