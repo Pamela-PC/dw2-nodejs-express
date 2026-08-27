@@ -47,4 +47,4 @@ batMan.investigar = function(){
 
 document.write(`<p>O herói ${batMan.nome} ${batMan.correr()}</p>`);
 document.write(`<p>${superMan.nome}</p>`);
-document.write(`<p><br>O ${homemAranha.nome} ${homemAranha.sentidoAranha()}</p>`);
+document.write(`<p>O ${homemAranha.nome} ${homemAranha.sentidoAranha()}</p>`);
