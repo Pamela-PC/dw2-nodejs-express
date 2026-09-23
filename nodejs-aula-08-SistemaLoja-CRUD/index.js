@@ -7,6 +7,11 @@ import connection from './config/sequelize-config.js'
 const app = express() 
 //Configurações do Express
 // Define o EJS como Renderizador de páginas
+
+//Importando os Models
+import Cliente from "./models/Cliente.js"
+import Pedido from "./models/Pedido.js"
+
 app.set('view engine', 'ejs')
 // Define o uso da pasta "public" para uso de arquivos estáticos
 app.use(express.static('public'))
@@ -19,6 +24,14 @@ connection.authenticate().then(()=>{
 }).catch((error)=>{
     console.log(`Ocorreu um erro ao se conectar ao banco de dados. Erro: ${error}`)
 })
+
+//CRIANDO BANCO DE DADOS SE ELE NÃO EXISTIR
+const DB_NAME = "loja";
+connection.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME};`).then(()=>{
+    console.log(`O banco de dados ${DB_NAME} está criado!`)
+}).catch((error)=>{
+    console.log(`Ocorreu um erro ao criar o banco de daods. Erro: ${error}`);
+});
 
 import ClienteController from "./controllers/ClienteController.js"
 import PedidoController from "./controllers/PedidoController.js"

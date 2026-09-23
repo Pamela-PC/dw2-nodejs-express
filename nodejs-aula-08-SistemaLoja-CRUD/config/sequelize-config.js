@@ -8,7 +8,8 @@ const connection = new Sequelize({
     host: 'localhost',
     username: 'root',
     password:'',
-    timezone: '-03:00',
+    database:'loja',
+    timezone:'-03:00',
 });
 //exportando o módulo
 export default connection;
