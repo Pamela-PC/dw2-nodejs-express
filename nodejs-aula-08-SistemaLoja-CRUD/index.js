@@ -12,6 +12,9 @@ const app = express()
 import Cliente from "./models/Cliente.js"
 import Pedido from "./models/Pedido.js"
 
+//Configurando o express para permitir dados através de formulários
+app.use(express.urlencoded({extended: false}));
+
 app.set('view engine', 'ejs')
 // Define o uso da pasta "public" para uso de arquivos estáticos
 app.use(express.static('public'))
