@@ -17,4 +17,20 @@ route.get("/produtos",function(req,res){
     })
 })
 
+route.post("/produtos/cadastrar", function(req, res){
+    const nome = req.body.nome;
+    const preco = req.body.preco;
+    const categoria = req.body.categoria;
+
+    Produto.create({
+        nome: nome,
+        preco: preco,
+        categoria: categoria,
+    }).then(()=>{
+        res.redirect("/produtos")
+    }).catch(error=>{
+        console.log(`Ocorreu um erro ao cadastrar o produto. ERRO: ${error}`);
+    });
+});
+
 export default route;

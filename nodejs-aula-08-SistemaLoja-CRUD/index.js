@@ -52,10 +52,6 @@ app.get("/",function(req,res){
 
 
 
-
-
-
-
 // INICIA O SERVIDOR NA PORTA 8080
 const port = 8080;
 app.listen(port,function(erro){

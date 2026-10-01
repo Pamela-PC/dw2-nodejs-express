@@ -3,6 +3,23 @@
 
     <div class="container">
         <div class="card">
+            <div class="card-body">
+                <form action="/pedidos/cadastrar" method="post">
+                    <label for="numero">Número do pedido: </label>
+                    <input type="text" name="numero" id="numero" class="form-control" placeholder="Insira o número do pedido" required>
+                    <label for="valor">Valor do pedido: </label>
+                    <input type="text" name="valor" id="valor" class="form-control" placeholder="Insira o valor" required>
+                    <br>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                    <button type="reset" class="btn btn-danger">Limpar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="container">
+        <div class="card">
             <div class="card-header">
                 <h1>Pedidos</h1>
             </div>

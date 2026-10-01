@@ -44,10 +44,12 @@
                                 <th>Nome:</th>
                                 <th>CPF:</th>
                                 <th>Endereço:</th>
+                                <!-- Nova Coluna Ações -->
+                                <th style="text-align: center;" colspan="2">Ações:</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% clientes.forEach(cliente=> { %>
+                            <% clientes.forEach(cliente => { %>
                                 <tr>
                                     <td><img src="imgs/avatar.png" width="30px"></td>
                                     <td>
@@ -59,6 +61,15 @@
                                     <td>
                                         <%= cliente.endereco %>
                                     </td>
+                                        <!--Botão de editar  -->
+                                    <td>
+                                        <a class="btn btn-warning" href="/clientes/editar/<%=cliente.id %>">Editar</a>
+                                    </td>
+                                    <!-- Botão de excluir -->
+                                     <td>
+                                        <a class="btn btn-danger" href="/clientes/excluir/<%=cliente.id%>" 
+                                            onclick="return confirm('Deseja mesmo excluir o cliente <%= cliente.nome %>')">Excluir</a>
+                                     </td>
                                 </tr>
                                 <% }) %>
                         </tbody>

@@ -15,4 +15,20 @@ route.get("/pedidos",function(req,res){
     })  
 })
 
+route.post("/pedidos/cadastrar", function(req, res){
+
+    const numero = req.body.numero;
+    const valor = req.body.valor;
+
+    Pedido.create({
+        numero: numero,
+        valor: valor,
+    }).then(()=>{
+        res.redirect("/pedidos")
+    }).catch(error=>{
+        console.log(`Ocorreu um erro ao cadastrar o pedido. ERRO: ${error}`)
+    })
+
+})
+
 export default route;
