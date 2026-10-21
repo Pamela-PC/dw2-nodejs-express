@@ -3,11 +3,13 @@ import Pedido from '../models/Pedido.js';
 import { where } from 'sequelize';
 //importando o Model de Cliente
 import Cliente from '../models/Cliente.js';
+//importando o middleware de Autenticação
+import Auth from '../middlewares/Auth.js';
 
 const route = express.Router();
 
 // ROTA PEDIDOS
-route.get("/pedidos",function(req,res){
+route.get("/pedidos", Auth, function(req,res){
 
     Promise.all([
         //listando todos os pedidos
@@ -32,7 +34,7 @@ route.get("/pedidos",function(req,res){
         console.log(`Erro ao listar os pedidos. ERRO: ${error}`);
     })
 });
-route.post("/pedidos/cadastrar", (req, res)=>{
+route.post("/pedidos/cadastrar", Auth, (req, res)=>{
     const numero = req.body.numero;
     const valor = req.body.valor;
     const clienteId = req.body.clienteId;
@@ -47,7 +49,7 @@ route.post("/pedidos/cadastrar", (req, res)=>{
     })
 })
 
-route.get("/pedidos/excluir/:id", (req, res) => {
+route.get("/pedidos/excluir/:id", Auth, (req, res) => {
     const id = req.params.id;
     Pedido.destroy({
         where: {id: id}
@@ -58,7 +60,7 @@ route.get("/pedidos/excluir/:id", (req, res) => {
     });
 });
 
-route.get("/pedidos/editar/:id", (req, res) => {
+route.get("/pedidos/editar/:id", Auth, (req, res) => {
     const id = req.params.id;
     Pedido.findByPk(id).then(pedido => {
         res.render("pedidosEditar", {
@@ -69,7 +71,7 @@ route.get("/pedidos/editar/:id", (req, res) => {
     });
 });
 
-route.post("/pedidos/alterar", (req, res) => {
+route.post("/pedidos/alterar", Auth, (req, res) => {
     const id = req.body.id
     const numero = req.body.numero
     const valor = req.body.valor

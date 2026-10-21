@@ -3,8 +3,23 @@
 import express from 'express';
 // Importando o arquivo de conexão do Sequelize
 import connection from './config/sequelize-config.js';
+//Importando o express-session
+import session from 'express-session';
+
+
 // Iniciando o Express 
 const app = express();
+
+//Importando as sessões
+import defineAssociations from "./config/associations.js"
+
+//Configurando a sessão do ususário
+app.use(session({
+    secret: "segredoloja",
+    cookie:{maxAge: 3600000},//Sessão expira em 1 hr
+    saveUninitialized: false,
+    resave: false
+}));
 
 // configuração do Express
 app.use(express.urlencoded({ extended: true }));
@@ -58,8 +73,9 @@ import Cliente from "./models/Cliente.js";
 import Pedido from "./models/Pedido.js";
 import Produto from "./models/Produto.js";
 
-//Importando as associações
-import defineAssociations from "./config/associations.js"
+//importando o middleware de Autenticação
+import Auth from './middlewares/Auth.js';
+
 //Definindo o uso das rotas
 app.use('/', ClienteController);
 app.use('/', PedidoController);
@@ -67,7 +83,7 @@ app.use('/', ProdutoController);
 app.use('/', UsuariosController);
 
 // ROTA PRINCIPAL
-app.get("/",function(req,res){
+app.get("/", Auth, function(req,res){
     res.render("index")
 })
 

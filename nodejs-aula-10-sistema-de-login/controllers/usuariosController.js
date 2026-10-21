@@ -8,8 +8,18 @@ import bcrypt from "bcrypt";
 
 //ROTA LOGIN
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login"), {
+    loggedOut: true,
+  };
 });
+
+//ROTA DE LOGOUT
+router.get("/logout", (req, res)=>{
+  //limpa a sessão
+  req.session.user = undefined;
+  //Redireciona para a home
+  res.redirect("/");
+})
 
 //ROTA DE AUTENTICAÇÃO
 router.post("/autenticar", (req, res)=>{
@@ -24,6 +34,16 @@ router.post("/autenticar", (req, res)=>{
             const senhaCorreta = bcrypt.compareSync(password, usuario.password);
             //Se A SENHA FOR VÁLIDA
             if(senhaCorreta){
+                //AUTORIZA O LOGIN E CRIA A SESÃO PARA O USUÁRIO
+                req.session.user = {
+                  id: usuario.id,
+                  email: usuario.email,
+                };
+              
+                //res.send(`Usuário logado: <br> 
+                  //ID: ${req.session.user["id"]} <br>
+                 // E-mail: ${req.session.user["email"]}`);
+
                 res.redirect("/");
                 //SE A SENHA FOR INVÁLIDA      
             }else{
@@ -42,7 +62,9 @@ router.post("/autenticar", (req, res)=>{
 
 //ROTA DE CADASTRO
 router.get("/cadastro", (req, res) => {
-  res.render("cadastro");
+  res.render("cadastro",{
+    loggedOut: true,
+  });
 });
 
 router.post("/cadastro/novo", (req, res) => {
